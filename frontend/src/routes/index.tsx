@@ -29,6 +29,9 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import IntroVideo from "@/components/IntroVideo";
+import DynamicServicesSection from "@/components/DynamicServicesSection";
+import DynamicGallerySection from "@/components/DynamicGallerySection";
 
 import heroImage from "@/assets/temple-hero.png.asset.json";
 import deityImage from "@/assets/venkateswara.jpg";
@@ -1243,26 +1246,37 @@ function Footer() {
 }
 
 function NarayanaTirumala() {
+  const [showIntroVideo, setShowIntroVideo] = useState(true);
+
+  const handleIntroVideoEnd = () => {
+    setShowIntroVideo(false);
+  };
+
   return (
-    <main>
-      <Navbar />
+    <>
+      {showIntroVideo && <IntroVideo onVideoEnd={handleIntroVideoEnd} />}
+      <main>
+        <Navbar />
 
-      <HeroSection />
+        <HeroSection />
 
-      <AboutSection />
+        <AboutSection />
 
-      {/* NEW */}
-      <VishnuSection />
+        {/* NEW */}
+        <VishnuSection />
 
-      <AshtaLakshmiSection />
+        <AshtaLakshmiSection />
 
-      <ServicesSection />
+        <DynamicServicesSection />
 
-      <ExperienceGallery />
+        <DynamicGallerySection />
 
-      <TestimonialCTA />
+        <ExperienceGallery />
 
-      <Footer />
-    </main>
+        <TestimonialCTA />
+
+        <Footer />
+      </main>
+    </>
   );
 }
