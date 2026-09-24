@@ -8,7 +8,7 @@ interface IntroVideoProps {
 
 export default function IntroVideo({ onVideoEnd }: IntroVideoProps) {
   const [isPlaying, setIsPlaying] = useState(true);
-  const [timeLeft, setTimeLeft] = useState(6.67); // 20 seconds at 3x speed = 6.67 seconds real time
+  const [timeLeft, setTimeLeft] = useState(10.86); // Duration of 2x speed video
   const [opacity, setOpacity] = useState(1);
   const videoRef = useRef<HTMLVideoElement>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
@@ -19,10 +19,7 @@ export default function IntroVideo({ onVideoEnd }: IntroVideoProps) {
     const video = videoRef.current;
     if (!video) return;
 
-    // Set playback rate to 3x
-    video.playbackRate = 3;
-    
-    // Auto-play the video
+    // Auto-play the video (no additional speed modification needed)
     video.play().catch(console.error);
 
     // Keyboard event listener for ESC key
@@ -34,7 +31,7 @@ export default function IntroVideo({ onVideoEnd }: IntroVideoProps) {
 
     document.addEventListener('keydown', handleKeyPress);
 
-    // Start fade out at 5.67 seconds (1 second before end)
+    // Start fade out at 9.86 seconds (1 second before end)
     fadeTimeoutRef.current = setTimeout(() => {
       // Fade out over 1 second
       const fadeInterval = setInterval(() => {
@@ -46,12 +43,12 @@ export default function IntroVideo({ onVideoEnd }: IntroVideoProps) {
           return prev - 0.05; // Fade out in 20 steps over 1 second
         });
       }, 50);
-    }, 5670);
+    }, 9860);
 
-    // Set up timer for 6.67 seconds (20 seconds of content at 3x speed)
+    // Set up timer for actual video duration
     timeoutRef.current = setTimeout(() => {
       handleVideoEnd();
-    }, 6670);
+    }, 10860);
 
     // Update countdown timer every 100ms for smoother animation
     intervalRef.current = setInterval(() => {
@@ -118,7 +115,7 @@ export default function IntroVideo({ onVideoEnd }: IntroVideoProps) {
         <div className="absolute bottom-0 left-0 right-0 h-1 bg-black/50 sm:h-1.5">
           <div
             className="h-full bg-gradient-to-r from-gold to-yellow-400 transition-all duration-100 ease-linear"
-            style={{ width: `${((6.67 - timeLeft) / 6.67) * 100}%` }}
+            style={{ width: `${((10.86 - timeLeft) / 10.86) * 100}%` }}
           />
         </div>
 
