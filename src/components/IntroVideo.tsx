@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { X } from "lucide-react";
-import introVideo from "@/assets/dji_fly_20260917_121328_0_1789638469170_video_cache.mp4";
+import introVideo from "@/assets/dji_fly_20260917_121328_0_1789638469170_video_cache_2x.mp4";
 
 interface IntroVideoProps {
   onVideoEnd?: () => void;
